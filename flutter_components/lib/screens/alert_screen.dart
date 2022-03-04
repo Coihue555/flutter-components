@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +11,27 @@ class AlertScreen extends StatelessWidget {
     showCupertinoDialog(
       context: context,
       builder: (context){
-        return const CupertinoAlertDialog(
-          title: Text('Titulo'),
+        return CupertinoAlertDialog(
+          title: const Text('Titulo'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Text('Contenido de la alerta'),
+              SizedBox( height: 10),
+              FlutterLogo( size: 100 )
+
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancelar', style: TextStyle( color:Colors.red))
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Ok')
+            )
+           ],
         );
       }
     );
@@ -39,6 +60,10 @@ class AlertScreen extends StatelessWidget {
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: const Text('Cancelar')
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Ok')
               )
             ],
         );
@@ -61,7 +86,9 @@ class AlertScreen extends StatelessWidget {
              child: Text('Mostrar alerta', style: TextStyle( fontSize: 20 ),),
            ),
            //onPressed: ()=>displayDialogAndroid(context)
-           onPressed: ()=>displayDialogIOS(context)
+           onPressed: () => Platform.isAndroid
+              ? displayDialogAndroid(context)
+              : displayDialogIOS(context)
           )
         ),
       floatingActionButton: FloatingActionButton(
