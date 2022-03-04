@@ -12,6 +12,7 @@ class SliderScreen extends StatefulWidget {
 class _SliderScreenState extends State<SliderScreen> {
 
   double _sliderValue = 100;
+  bool _sliderEnabled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -19,30 +20,63 @@ class _SliderScreenState extends State<SliderScreen> {
       appBar: AppBar(
         title: const Text('Sliders & Checks'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
+      body: Column(
+        children: [
       
-            Slider(
-              min: 100,
-              max: 900,
-              activeColor: AppTheme.primary,
-              value: _sliderValue,
-              onChanged: (value){
-                _sliderValue = value;
-                setState(() {});
-              }
-            ),
-      
-            Image(
-              image: const NetworkImage('https://cdn.pixabay.com/photo/2016/04/15/04/39/redpanda-1330305_960_720.png'),
-              fit: BoxFit.contain,
-              width: _sliderValue,
-            ),
+          Slider(
+            min: 50,
+            max: 900,
+            activeColor: AppTheme.primary,
+            value: _sliderValue,
+            onChanged: _sliderEnabled
+            ? (value){
+              _sliderValue = value;
+              setState(() {});
+            }
+            : null
+          ),
 
-            const SizedBox(height: 100)
-          ],
-        ),
+/*           Checkbox(
+            value: _sliderEnabled,
+            onChanged: (value){
+              _sliderEnabled = value ?? true;
+              setState(() {});
+            }
+          ),
+          
+          Switch(
+            value: _sliderEnabled,
+            onChanged: (value) => setState(() {_sliderEnabled = value;})
+          ), */
+
+          CheckboxListTile(
+            activeColor: AppTheme.primary,
+            title: const Text('Habilitar slider'),
+            value: _sliderEnabled,
+            onChanged: (value) => setState(() {_sliderEnabled = value ?? true;})
+          ),
+
+          
+
+          SwitchListTile.adaptive(
+            activeColor: AppTheme.primary,
+            title: const Text('Habilitar slider'),
+            value: _sliderEnabled,
+            onChanged: (value) => setState(() {_sliderEnabled = value;})
+          ),
+
+          const AboutListTile(),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Image(
+                image: const NetworkImage('https://cdn.pixabay.com/photo/2016/04/15/04/39/redpanda-1330305_960_720.png'),
+                fit: BoxFit.contain,
+                width: _sliderValue,
+              ),
+            ),
+          )
+        ],
       )
     );
   }
