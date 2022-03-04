@@ -18,7 +18,7 @@ class CardScreen extends StatelessWidget {
         children: const [
             CustomCardType1(),
             SizedBox(height:10),
-            CustomCardType2(imageUrl: 'https://cdn.eso.org/images/thumb700x/millour-01-cc.jpg',),
+            CustomCardType2(name: 'Paisaje de Chile', imageUrl: 'https://cdn.eso.org/images/thumb700x/millour-01-cc.jpg',),
             SizedBox(height:10),
             CustomCardType2(imageUrl: 'https://avivamientochaco.com/web/wp-content/uploads/2018/10/travel-landscape-01-1024x683.jpg',),
             SizedBox(height:10),

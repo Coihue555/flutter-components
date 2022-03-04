@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class CustomCardType2 extends StatelessWidget {
 
   final String imageUrl;
+  final String? name;
 
   const CustomCardType2({
     Key? key,
-    required this.imageUrl
+    required this.imageUrl, this.name
     }) : super(key: key);
 
   @override
@@ -28,11 +29,11 @@ class CustomCardType2 extends StatelessWidget {
             fit: BoxFit.cover,
             fadeInDuration: const Duration(milliseconds: 300),
             ),
-
+          if ( name != null)
             Container(
               alignment: AlignmentDirectional.centerEnd,
               padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
-              child: const Text('Un hermoso paisaje')
+              child: Text(name!)
               )
         ],
       ),
