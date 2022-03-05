@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                   obscureText: true,
                   validator: (value){
                     if (value == null ) return 'Este campo es requerido';
-                    return value.length < 3 ? 'Ingrese minimo 10 caracteres' : null;
+                    return value.length < 10 ? 'Ingrese minimo 10 caracteres' : null;
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
@@ -78,6 +78,10 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: const Color.fromARGB(255, 97, 112, 101),
+                        elevation: 5
+                      ),
                       child: const Center(
                         child: Text('Guardar'),
                         widthFactor: 500,
